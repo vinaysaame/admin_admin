@@ -22,4 +22,5 @@ router.register('APcampHis',views.APcampHis,basename ='APcampHis'),
 urlpatterns = [
     path('',include(router.urls)),
     path('admin/', admin.site.urls),
+    path('logout/',views.LogoutView.as_view(),name='logout'),
 ]

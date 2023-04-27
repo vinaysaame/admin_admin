@@ -3,6 +3,9 @@ from .models import *
 from .serializers import *
 from rest_framework import viewsets
 from django.utils import timezone
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.contrib.auth import get_user_model,logout
 # Create your views here.
 class Med_Event(viewsets.ModelViewSet):
     queryset = MedicalCamp_event.objects.filter(Date__gt=timezone.now())
@@ -60,3 +63,9 @@ class SCcampHis(viewsets.ModelViewSet):
 class APcampHis(viewsets.ModelViewSet):
     queryset = ApplicantsModel.objects.all()
     serializer_class = APCampserializer
+
+
+class LogoutView(APIView):
+    def post(self, request):
+        logout(request)
+        return Response({"detail": "You have been logged out."})
